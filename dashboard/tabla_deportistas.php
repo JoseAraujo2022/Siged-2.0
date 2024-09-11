@@ -19,20 +19,20 @@
 
 
     <div class="container-fluid">
-        <-div class="card shadow mb-4">
+        <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Deportistas</h6>
             </div>
             <br>
-            <!--div class="row">
+            <div class="row">
                 <div class="col-lg-1">
-                    </div>
-                <div-- class="col-lg-4">
+                </div>
+                <!--div class="col-lg-4">
                     <button id="btnNuevo" type="button" class="btn btn-success" data-toggle="modal">Añadir
                         deportista</button>
-                </div-->
+                </!--div-->
 
-            </--div>
+            </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table id="tablaPersonas" class="table table-bordered" style="width:100%">
