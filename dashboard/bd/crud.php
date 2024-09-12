@@ -5,14 +5,17 @@ $conexion = $objeto->Conectar();
 // Recepción de los datos enviados mediante POST desde el JS   
 
 $nombre = (isset($_POST['nombre'])) ? $_POST['nombre'] : '';
-$pais = (isset($_POST['pais'])) ? $_POST['pais'] : '';
-$edad = (isset($_POST['edad'])) ? $_POST['edad'] : '';
+$apellidos = (isset($_POST['apellidos'])) ? $_POST['apellidos'] : '';
+$federaciones = (isset($_POST['federaciones'])) ? $_POST['federaciones'] : '';
+$fecha_nacimiento = (isset($_POST['fecha_nacimiento'])) ? $_POST['fecha_nacimiento'] : '';
+$pais_nacimiento = (isset($_POST['pais_nacimiento'])) ? $_POST['pais_nacimiento'] : '';
 $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
 $id = (isset($_POST['id'])) ? $_POST['id'] : '';
 
 switch($opcion){
     case 1: //alta
-        $consulta = "INSERT INTO personas (nombre, pais, edad) VALUES('$nombre', '$pais', '$edad') ";			
+        $consulta = "INSERT INTO deportistas (nombre, apellidos, federaciones, fecha_nacimiento, pais_nacimiento ) VALUES('$nombre', '$apellidos', '$federaciones', '$fecha_nacimiento',
+        '$pais_nacimiento') ";			
         $resultado = $conexion->prepare($consulta);
         $resultado->execute(); 
 
@@ -22,17 +25,18 @@ switch($opcion){
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
         break;
     case 2: //modificación
-        $consulta = "UPDATE personas SET nombre='$nombre', pais='$pais', edad='$edad' WHERE id='$id' ";		
+        $consulta = "UPDATE deportistas SET nombre='$nombre', apellidos='$apellidos', federaciones='$federaciones', fecha_nacimiento='$fecha_nacimiento', pais_nacimiento='$pais_nacimiento' 
+        WHERE id='$id' ";		
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();        
         
-        $consulta = "SELECT id, nombre, pais, edad FROM personas WHERE id='$id' ";       
+        $consulta = "SELECT id, nombre, apellidos, federaciones, fecha_nacimiento , pais_nacimiento, FROM deportistas WHERE id='$id' ";       
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
         break;        
     case 3://baja
-        $consulta = "DELETE FROM personas WHERE id='$id' ";		
+        $consulta = "DELETE FROM deportistas WHERE id='$id' ";		
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();                           
         break;        
