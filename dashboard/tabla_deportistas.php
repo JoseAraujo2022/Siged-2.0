@@ -69,7 +69,7 @@
             </div>
 
         </div>
-        <!--Modal para CRUD-->
+        <!--Modal para CRUD BOTON EDITAR -->
         <div class="modal fade" id="modalCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -99,21 +99,27 @@
                             <div class="row">
                                 <div class="col-4">
                                     <label for="fecha_nacimiento" class="col-form-label">Fecha de Nacimiento:</label>
-                                    <input type="text" class="form-control" id="fecha_nacimiento">
+                                    <input type="date" class="form-control" id="fecha_nacimiento">
                                 </div>
                                 <div class="col-4">
                                     <label for="pais_nacimiento" class="col-form-label">Pais de Nacimiento:</label>
-                                    <input type="date" class="form-control" id="pais_nacimiento">
+                                    <input type="text" class="form-control" id="pais_nacimiento">
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <label for=""></label>
+                                </div>
+                                <div class="col-4">
+                                <label for=""></label>
+                            </div>
+                        </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
                                 <button type="submit" id="btnGuardar" class="btn btn-primary">Guardar</button>
                             </div>
-                            <div class="row">
-                                <div class="col-4"></div>
-                                <div class="col-4"></div>
-                            </div>
+                            
+                        </div>
 
                     </form>
                 </div>
