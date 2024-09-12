@@ -78,7 +78,29 @@ $(document).on("click", ".btnEditar", function(){
     $("#modalCRUD").modal("show");  
     
 });
+//botón EDITAR    
+$(document).on("click", ".btnEditar", function(){
+    fila = $(this).closest("tr");
+    id = parseInt(fila.find('td:eq(0)').text());
+    nombre = fila.find('td:eq(1)').text();
+    apellidos = fila.find('td:eq(2)').text();
+    federaciones = fila.find('td:eq(3)').text();
+    fecha_nacimiento = parseInt(fila.find('td:eq(4)').text());
+    pais_nacimiento = fila.find('td:eq(5)').text();
 
+    $("#nombre").val(nombre);
+    $("#apellidos").val(apellidos);
+    $("#federaciones").val(federaciones);
+    $("#fecha_nacimiento").val(fecha_nacimiento);
+    $("#pais_nacimiento").val(pais_nacimiento);
+    opcion = 2; //editar
+    
+    $(".modal-header").css("background-color", "#4e73df");
+    $(".modal-header").css("color", "white");
+    $(".modal-title").text("Editar Persona");            
+    $("#modalCRUD").modal("show");  
+    
+});
 //botón BORRAR
 $(document).on("click", ".btnBorrar", function(){    
     fila = $(this);
