@@ -25,17 +25,14 @@
             </div>
             <br>
             <div class="row">
-                <div class="col-lg-1">
-                </div>
-                <!--div class="col-lg-4">
+                <div class="col-lg-4">
                     <button id="btnNuevo" type="button" class="btn btn-success" data-toggle="modal">Añadir
                         deportista</button>
-                </!--div-->
-
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="tablaPersonas" class="table table-bordered" style="width:100%">
+                    <table id="tablaDeportistas" class="table table-bordered" style="width:100%">
                         <thead class="text-center">
                             <tr>
                                 <th>Foto</th>
@@ -98,11 +95,13 @@
                             </div>
                             <div class="row">
                                 <div class="col-4">
-                                    <label for="fecha_nacimiento" class="col-form-label">Fecha de Nacimiento:</label>
+                                    <label for="fecha_nacimiento" class="col-form-label">Fecha de
+                                        Nacimiento:</label>
                                     <input type="date" class="form-control" id="fecha_nacimiento">
                                 </div>
                                 <div class="col-4">
-                                    <label for="pais_nacimiento" class="col-form-label">Pais de Nacimiento:</label>
+                                    <label for="pais_nacimiento" class="col-form-label">Pais de
+                                        Nacimiento:</label>
                                     <input type="text" class="form-control" id="pais_nacimiento">
                                 </div>
                             </div>
@@ -111,14 +110,14 @@
                                     <label for=""></label>
                                 </div>
                                 <div class="col-4">
-                                <label for=""></label>
+                                    <label for=""></label>
+                                </div>
                             </div>
-                        </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
                                 <button type="submit" id="btnGuardar" class="btn btn-primary">Guardar</button>
                             </div>
-                            
+
                         </div>
 
                     </form>

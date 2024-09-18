@@ -1,92 +1,51 @@
-$(document).ready(function(){
-    tablaPersonas = $("#tablaPersonas").DataTable({
-       "columnDefs":[{
-        "targets": -1,
-        "data":null,
-        "defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar'>Editar</button><button class='btn btn-danger btnBorrar'>Borrar</button></div></div>"  
-       }],
-        
-    "language": {
-            "lengthMenu": "Mostrar _MENU_ registros",
-            "zeroRecords": "No se encontraron resultados",
-            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-            "sSearch": "Buscar:",
-            "oPaginate": {
-                "sFirst": "Primero",
-                "sLast":"Último",
-                "sNext":"Siguiente",
-                "sPrevious": "Anterior"
-             },
-             "sProcessing":"Procesando...",
-        },
-        //para usar los botones   
-        responsive: "true",
-        dom: 'Bfrtilp',       
-        buttons:[ 
-			{
-				extend:    'excelHtml5',
-				text:      '<i class="fas fa-file-excel"></i> ',
-				titleAttr: 'Exportar a Excel',
-				className: 'btn btn-success'
-			},
-			{
-				extend:    'pdfHtml5',
-				text:      '<i class="fas fa-file-pdf"></i> ',
-				titleAttr: 'Exportar a PDF',
-				className: 'btn btn-danger'
-			},
-			{
-				extend:    'print',
-				text:      '<i class="fa fa-print"></i> ',
-				titleAttr: 'Imprimir',
-				className: 'btn btn-info'
-			},
-		]	    
+$(document).ready(function () {
+  tablaDeportistas = $("#tablaDeportistas").DataTable({
+    columnDefs: [
+      {
+        targets: -1,
+        data: null,
+        defaultContent:
+          "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar'>Editar</button><button class='btn btn-danger btnBorrar'>Borrar</button></div></div>",
+      },
+    ],
 
-    });
-    
-$("#btnNuevo").click(function(){
-    $("#formPersonas").trigger("reset");
+    language: {
+      lengthMenu: "Mostrar _MENU_ registros",
+      zeroRecords: "No se encontraron resultados",
+      info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+      infoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
+      infoFiltered: "(filtrado de un total de _MAX_ registros)",
+      sSearch: "Buscar:",
+      oPaginate: {
+        sFirst: "Primero",
+        sLast: "Último",
+        sNext: "Siguiente",
+        sPrevious: "Anterior",
+      },
+      sProcessing: "Procesando...",
+    },
+  });
+
+  $("#btnNuevo").click(function () {
+    $("#formDeportistas").trigger("reset");
     $(".modal-header").css("background-color", "#1cc88a");
     $(".modal-header").css("color", "white");
-    $(".modal-title").text("Nueva Persona");            
-    $("#modalCRUD").modal("show");        
-    id=null;
+    $(".modal-title").text("Nueva Persona");
+    $("#modalCRUD").modal("show");
+    id = null;
     opcion = 1; //alta
-});    
-    
-var fila; //capturar la fila para editar o borrar el registro
-    
-//botón EDITAR    
-$(document).on("click", ".btnEditar", function(){
+  });
+
+  var fila; //capturar la fila para editar o borrar el registro
+  //botón EDITAR    
+  $(document).on("click", ".btnEditar", function () {
     fila = $(this).closest("tr");
-    id = parseInt(fila.find('td:eq(0)').text());
-    nombre = fila.find('td:eq(1)').text();
-    pais = fila.find('td:eq(2)').text();
-    edad = parseInt(fila.find('td:eq(3)').text());
-    
-    $("#nombre").val(nombre);
-    $("#pais").val(pais);
-    $("#edad").val(edad);
-    opcion = 2; //editar
-    
-    $(".modal-header").css("background-color", "#4e73df");
-    $(".modal-header").css("color", "white");
-    $(".modal-title").text("Editar Persona");            
-    $("#modalCRUD").modal("show");  
-    
-});
-//botón EDITAR    
-$(document).on("click", ".btnEditar", function(){
-    fila = $(this).closest("tr");
-    id = parseInt(fila.find('td:eq(0)').text());
-    nombre = fila.find('td:eq(1)').text();
-    apellidos = fila.find('td:eq(2)').text();
-    federaciones = fila.find('td:eq(3)').text();
-    fecha_nacimiento = parseInt(fila.find('td:eq(4)').text());
-    pais_nacimiento = fila.find('td:eq(5)').text();
+    id = parseInt(fila.find("td:eq(0)").text());
+    nombre = fila.find("td:eq(1)").text();
+    apellidos = fila.find("td:eq(2)").text();
+    federaciones = fila.find("td:eq(3)").text();
+    fecha_nacimiento = parseInt(fila.find("td:eq(4)").text());
+    pais_nacimiento = fila.find("td:eq(5)").text();
 
     $("#nombre").val(nombre);
     $("#apellidos").val(apellidos);
@@ -94,54 +53,87 @@ $(document).on("click", ".btnEditar", function(){
     $("#fecha_nacimiento").val(fecha_nacimiento);
     $("#pais_nacimiento").val(pais_nacimiento);
     opcion = 2; //editar
-    
+
     $(".modal-header").css("background-color", "#4e73df");
     $(".modal-header").css("color", "white");
-    $(".modal-title").text("Editar Persona");            
-    $("#modalCRUD").modal("show");  
-    
-});
-//botón BORRAR
-$(document).on("click", ".btnBorrar", function(){    
+    $(".modal-title").text("¿Listo para salir?");
+    $("#modalCRUD").modal("show");
+  });
+  //botón BORRAR
+  $(document).on("click", ".btnBorrar", function () {
     fila = $(this);
-    id = parseInt($(this).closest("tr").find('td:eq(0)').text());
-    opcion = 3 //borrar
-    var respuesta = confirm("¿Está seguro de eliminar el registro: "+id+"?");
-    if(respuesta){
-        $.ajax({
-            url: "bd/crud.php",
-            type: "POST",
-            dataType: "json",
-            data: {opcion:opcion, id:id},
-            success: function(){
-                tablaPersonas.row(fila.parents('tr')).remove().draw();
-            }
-        });
-    }   
-});
-    
-$("#formPersonas").submit(function(e){
-    e.preventDefault();    
-    nombre = $.trim($("#nombre").val());
-    pais = $.trim($("#pais").val());
-    edad = $.trim($("#edad").val());    
-    $.ajax({
+    id = parseInt($(this).closest("tr").find("td:eq(0)").text());
+
+    opcion = 3; //borrar
+    var respuesta = confirm(
+      "¿Está seguro de eliminar el registro: " + id + "?" );
+    if (respuesta) {
+      $.ajax({
         url: "bd/crud.php",
         type: "POST",
         dataType: "json",
-        data: {nombre:nombre, pais:pais, edad:edad, id:id, opcion:opcion},
-        success: function(data){  
-            console.log(data);
-            id = data[0].id;            
-            nombre = data[0].nombre;
-            pais = data[0].pais;
-            edad = data[0].edad;
-            if(opcion == 1){tablaPersonas.row.add([id,nombre,pais,edad]).draw();}
-            else{tablaPersonas.row(fila).data([id,nombre,pais,edad]).draw();}            
-        }        
+        data: { opcion: opcion, id: id },
+        success: function () {
+          tablaDeportistas.row(fila.parents("tr")).remove().draw();
+        },
+      });
+    }
+  });
+
+  $("#formDeportistas").submit(function (e) {
+    e.preventDefault();
+    nombre = $.trim($("#nombre").val());
+    apellidos = $.trim($("#apellidos").val());
+    federaciones = $.trim($("#feredaciones").val());
+    fecha_nacimiento = $.trim($("#fecha_nacimiento").val());
+    pais_nacimiento = $.trim($("#pais_nacimiento").val());
+    $.ajax({
+      url: "bd/crud.php",
+      type: "POST",
+      dataType: "json",
+      data: {
+        nombre: nombre,
+        apellidos: apellidos,
+        federaciones: federaciones,
+        fecha_nacimiento: fecha_nacimiento,
+        pais_nacimiento: pais_nacimiento,
+        id: id,
+        opcion: opcion,
+      },
+      success: function (data) {
+        console.log(data);
+        id = data[0].id;
+        nombre = data[0].nombre;
+        apellidos = data[0].apellidos;
+        federaciones = data[0].federaciones;
+        fecha_nacimiento = data[0].fecha_nacimiento;
+        pais_nacimiento = data[0].pais_nacimiento;
+        if (opcion == 1) {
+          tablaDeportistas.row
+            .add([
+              id,
+              nombre,
+              apellidos,
+              federaciones,
+              fecha_nacimiento,
+              pais_nacimiento,
+            ])
+            .draw();
+        } else {
+          tablaDeportistas
+            .row(fila)
+            .data([
+              id,
+              nombre,
+              apellidos,
+              federaciones,
+              fecha_nacimiento,
+              pais_nacimiento,
+            ])
+            .draw();
+        }
+      },
     });
-    $("#modalCRUD").modal("hide");    
-    
-});    
-    
+    $("#modalCRUD").modal("hide");
+  });
 });

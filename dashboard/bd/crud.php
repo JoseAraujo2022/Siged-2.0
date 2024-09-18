@@ -19,7 +19,7 @@ switch($opcion){
         $resultado = $conexion->prepare($consulta);
         $resultado->execute(); 
 
-        $consulta = "SELECT id, nombre, pais, edad FROM personas ORDER BY id DESC LIMIT 1";
+        $consulta = "SELECT id, nombre, apellidos, federaciones, fecha_nacimiento, pais_nacimiento  FROM deportistas ORDER BY id DESC LIMIT 1";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);

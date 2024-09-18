@@ -37,7 +37,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="tablaPersonas" class="table table-bordered" style="width: 100%">
+                    <table id="tablaDeportistas" class="table table-bordered" style="width: 100%">
                         <thead class="text-center">
                             <tr>
                                 <th>Foto</th>
