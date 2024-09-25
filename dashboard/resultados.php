@@ -1,11 +1,12 @@
+<!--INICIO del cont principal-->
 <?php require_once "vistas/parte_superior.php" ?>
-<!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- DataTales Example -->
     <div class="container-fluid">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Deportes</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Registro detallado de Resultados de Eventos Deportivos
+                </h6>
             </div>
             <br>
             <div class="row">
@@ -29,18 +30,6 @@
                                 <th>Bronce</th>
                             </tr>
                         </thead>
-                        <!--tfoot>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Juegos</th>
-                                            <th>Pais</th>
-                                            <th>Prueba</th>
-                                            <th>Marcas</th>
-                                            <th>Oro</th>
-                                            <th>Plata</th>
-                                            <th>Bronce</th>
-                                        </tr>
-                                    </tfoot-->
                         <tbody>
                             <tr>
                                 <td>Tiger Nixon</td>
@@ -99,8 +88,7 @@
         </div>
     </div>
 </div>
-<!-- /.container-fluid -->
 
-<!--FIN del cont principal-->
 
-<?php require_once "vistas/parte_inferior.php" ?>
+        <!--FIN del cont principal-->
+        <?php require_once "vistas/parte_inferior.php" ?>

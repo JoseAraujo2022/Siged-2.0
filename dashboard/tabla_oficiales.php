@@ -48,7 +48,6 @@
                                 <th>Pais de Nacimiento</th>
                                 <th>Acciones</th>
                             </tr>
-
                         </thead>
                         <tbody>
                             <?php
@@ -91,50 +90,32 @@
                                     <input type="text" class="form-control" id="nombre">
                                 </div>
                                 <div class="col-4">
-                                    <label for="nombre" class="col-form-label">Juegos:</label>
-                                    <input type="text" class="form-control" id="nombre">
+                                    <label for="apellidos" class="col-form-label">Apellidos:</label>
+                                    <input type="text" class="form-control" id="apellidos">
                                 </div>
                                 <div class="col-4">
-                                    <label for="pais" class="col-form-label">País:</label>
-                                    <input type="text" class="form-control" id="pais">
+                                    <label for="federaciones" class="col-form-label">Federaciones:</label>
+                                    <input type="text" class="form-control" id="federaciones">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-4">
-                                    <label for="pais" class="col-form-label">Deporte:</label>
-                                    <input type="text" class="form-control" id="pais">
+                                    <label for="fecha_nacimiento" class="col-form-label">Fecha de
+                                        Nacimiento:</label>
+                                    <input type="date" class="form-control" id="fecha_nacimiento">
                                 </div>
                                 <div class="col-4">
-                                    <label for="nombre" class="col-form-label">Fecha:</label>
-                                    <input type="date" class="form-control" id="">
-                                </div>
-                                <div class="col-4">
-                                    <label for="pais" class="col-form-label">Prueba:</label>
-                                    <input type="text" class="form-control" id="pais">
+                                    <label for="pais_nacimiento" class="col-form-label">Pais de
+                                        Nacimiento:</label>
+                                    <input type="text" class="form-control" id="pais_nacimiento">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-4">
-                                    <label for="pais" class="col-form-label">Oro:</label>
-                                    <input type="number" class="form-control" id="edad">
+                                    <label for=""></label>
                                 </div>
                                 <div class="col-4">
-                                    <label for="pais" class="col-form-label">Plata:</label>
-                                    <input type="number" class="form-control" id="edad">
-                                </div>
-                                <div class="col-4">
-                                    <label for="pais" class="col-form-label">Bronce:</label>
-                                    <input type="number" class="form-control" id="edad">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-4">
-                                    <label for="pais" class="col-form-label">Marcas:</label>
-                                    <input type="text" class="form-control" id="pais">
-                                </div>
-                                <div class="form-group">
-                                    <label for="edad" class="col-form-label">Total:</label>
-                                    <input type="number" class="form-control" id="edad">
+                                    <label for=""></label>
                                 </div>
                             </div>
                             <div class="modal-footer">

@@ -112,9 +112,9 @@ if ($_SESSION["s_usuario"] === null) {
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="buttons.php">Registro de Eventos</a>
-            <a class="collapse-item" href="buttons.php">Deportes y ciudades</a>
-            <a class="collapse-item" href="cards.php">Resultados</a>
+            <a class="collapse-item" href="form-eventos.php">Registro de Eventos</a>
+            <a class="collapse-item" href="form-reg-deportes.php">Deportes y ciudades</a>
+            <a class="collapse-item" href="resultados.php">Resultados</a>
           </div>
         </div>
       </li>
@@ -142,7 +142,7 @@ if ($_SESSION["s_usuario"] === null) {
             <a class="collapse-item" href="buttons.php">Nómina de Juegos</a>
             <a class="collapse-item" href="buttons.php">Resultados generales</a>
             <a class="collapse-item" href="cards.php">Resultados individuales</a>
-            <a class="collapse-item" href="cards.php">Resumen de Juegos</a>
+            <a class="collapse-item" href="resultados.php">Resumen de Juegos</a>
           </div>
         </div>
       </li>
