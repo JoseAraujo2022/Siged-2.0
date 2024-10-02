@@ -9,29 +9,59 @@
                 </h6>
             </div>
             <br>
-            <div class="row">
-                <div class="col-lg-1">
-                    
-                </div>
-               
-            </div>
+
             <div class="card-body">
-                <div class="table-responsive">
+                <div class="row">
+                    <div class="col-3">
+                        <label for="nombre" class="col-form-label">Juego-Evento</label>
+                        <select type="text" class="form-control" id="evento">
+                            <option value="">Seleccione</option>
+                            <option value="I Bolivarianos 1938- COL">I Bolivarianos 1938- Col</option>
+                            <option value="I Juegos Panamericanos- ARG">I Juegos Panamericanos- Arg</option>
+                            <option value="I Juegos Sudamericanos- Bol">I Juegos Sudamericanos- Bol</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <label for="nombre" class="col-form-label">Deporte</label>
+                        <select type="text" class="form-control" id="evento">
+                            <option value="">Seleccione </option>
+                            <option value="">Atletismo</option>
+                            <option value="">Billar</option>
+                            <option value="">Boxeo</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="">
                     <table class="table table-bordered" id="tablaPersonas" width="100%" cellspacing="0">
+                        <tr>
+                            <div class="row"></div>
+                            <input type="button" class="btn btn-primary" name="agregar" id="button" value="Agregar"
+                                onclick="agregarFilaEscenario('grd_escenarios');">
+                            <input type="button" class="btn btn-danger btnBorrar" name="eliminar" id="button"
+                                value="Eliminar" onclick="eliminarFila('grd_escenarios','chkseleccion')">
+
+                        </tr>
+                        <br><br>
                         <thead>
                             <tr>
-                                <th>Nombre</th>
-                                <th>Juegos</th>
-                                <th>Pais</th>
-                                <th>Prueba</th>
+                                <th>--</th>
+                                <th>Deporte</th>
+                                <th>Deportista</th>
+                                <th>Fecha</th>
+                                <th>División-Prueba-Modalidad</th>
                                 <th>Marcas</th>
                                 <th>Oro</th>
                                 <th>Plata</th>
                                 <th>Bronce</th>
+                                <th>Posicion</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
+                                <td><input type="checkbox"></td>
                                 <td>Tiger Nixon</td>
                                 <td>System Architect</td>
                                 <td>Edinburgh</td>
@@ -40,55 +70,22 @@
                                 <td>$320,800</td>
                                 <td>$320,800</td>
                                 <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>63</td>
-                                <td>2011/07/25</td>
-                                <td>$170,750</td>
-                                <td>$320,800</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>Airi Satou</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>33</td>
-                                <td>2008/11/28</td>
-                                <td>$162,700</td>
-                                <td>$320,800</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>Brielle Williamson</td>
-                                <td>Integration Specialist</td>
-                                <td>New York</td>
-                                <td>61</td>
-                                <td>2012/12/02</td>
-                                <td>$372,000</td>
-                                <td>$320,800</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>Jennifer Acosta</td>
-                                <td>Junior Javascript Developer</td>
-                                <td>Edinburgh</td>
-                                <td>43</td>
-                                <td>2013/02/01</td>
-                                <td>$75,650</td>
-                                <td>$320,800</td>
-                                <td>2</td>
+                                <td>3</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                <br>
+                <div class="modal-footer">
+                    <div style="text-align: center">
+                        <button type="submit" id="btnGuardar" class="btn btn-success">Grabar</button>
+                        <button type="button" class="btn btn-danger btnBorrar">Eliminar</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
-        <!--FIN del cont principal-->
-        <?php require_once "vistas/parte_inferior.php" ?>
+    <!--FIN del cont principal-->
+    <?php require_once "vistas/parte_inferior.php" ?>

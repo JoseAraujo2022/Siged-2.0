@@ -139,10 +139,10 @@ if ($_SESSION["s_usuario"] === null) {
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <!-h6 class="collapse-header"></!-h6>
-            <a class="collapse-item" href="buttons.php">Nómina de Juegos</a>
-            <a class="collapse-item" href="buttons.php">Resultados generales</a>
-            <a class="collapse-item" href="cards.php">Resultados individuales</a>
-            <a class="collapse-item" href="resultados.php">Resumen de Juegos</a>
+            <a class="collapse-item" href="nomina_juegos.php">Nómina de Juegos</a>
+            <a class="collapse-item" href="resultados_generales.php">Resultados generales</a>
+            <a class="collapse-item" href="resultados_individuales.php">Resultados individuales</a>
+            <a class="collapse-item" href="resumen_juegos.php">Resumen de Juegos</a>
           </div>
         </div>
       </li>
