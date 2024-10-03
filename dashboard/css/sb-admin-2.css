@@ -587,7 +587,7 @@ pre code {
 }
 
 .container-fluid {
-  width: 100%;
+  width: auto;
   padding-right: 0.75rem;
   padding-left: 0.75rem;
   margin-right: auto;
@@ -10586,8 +10586,8 @@ a:focus {
 
 .container,
 .container-fluid {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: auto;
+    padding-right: auto;
 }
 
 .scroll-to-top {

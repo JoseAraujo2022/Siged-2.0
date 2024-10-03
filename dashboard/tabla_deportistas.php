@@ -14,8 +14,6 @@
     $resultado->execute();
     $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
     ?>
-
-
     <div class="container-fluid">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -25,7 +23,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <button id="btnNuevo" type="button" class="btn btn-success" data-toggle="modal">Añadir
-                        deportista</button>
+                    deportista</button>
                 </div>
             </div>
             <div class="card-body">

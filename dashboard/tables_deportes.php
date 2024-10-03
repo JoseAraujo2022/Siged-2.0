@@ -10,9 +10,7 @@
             <br>
             <div class="row">
                 <div class="col-lg-1">
-                    
                 </div>
-               
             </div>
             <div class="card-body">
                 <div class="table-responsive">
