@@ -5,7 +5,7 @@ $(document).ready(function () {
         targets: -1,
         data: null,
         defaultContent:
-          "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar'>Editar</button><button class='btn btn-danger btnBorrar'>Borrar</button></div></div>",
+          "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar'>prueba</button><button class='btn btn-danger btnBorrar'>Borrar</button></div></div>",
       },
     ],
 
