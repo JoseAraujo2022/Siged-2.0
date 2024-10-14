@@ -7,7 +7,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Registro de Eventos deportivos</h6>
         </div>
         <form id="">
-            <div class="modal-body">
+            <div class="card-body">
                 <div class="row">
                     <div class="col-4">
                         <label for="nombre" class="col-form-label">Nombre:</label>

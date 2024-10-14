@@ -1,4 +1,6 @@
 <!--INICIO del cont principal-->
+
+
 <?php require_once "vistas/parte_superior.php" ?>
 <div class="container-fluid">
     <div class="card shadow mb-4">
@@ -6,7 +8,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Registro de Deportes</h6>
         </div>
         <form id="">
-            <div class="modal-body">
+            <div class="card-body">
                 <div class="row">
                     <div class="col-4">
                         <label for="nombre" class="col-form-label">Nombre del evento</label>
@@ -96,11 +98,11 @@
                                 </select></td>
                             <td width="10%">
                                 <p>
-                                    <input type="button" class="form-control"  name="btn2" id="btn2" value=">"
+                                    <input type="button" class="form-control" name="btn2" id="btn2" value=">"
                                         onclick="agregarItem('cmb_deporte','cmb_asignados', true,0);deportes_seleccionados++;//cargarOpciones('cmb_asignados','cmb_deportes')">
                                 </p>
                                 <p>
-                                    <input type="button" class="form-control"  name="btn3" id="btn3" value="<"
+                                    <input type="button" class="form-control" name="btn3" id="btn3" value="<"
                                         onclick="agregarItem('cmb_asignados','cmb_deporte', true,0);deportes_seleccionados--; ">
                                 </p>
                                 <p>&nbsp;</p>

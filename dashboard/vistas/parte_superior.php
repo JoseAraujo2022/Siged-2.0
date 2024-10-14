@@ -85,7 +85,7 @@ if ($_SESSION["s_usuario"] === null) {
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="tabla_deportistas.php">Deportistas</a>
             <a class="collapse-item" href="tabla_oficiales.php">Oficiales</a>
-            <a class="collapse-item" href="tables_deportes.php">Otro(prueba)</a>
+            <a class="collapse-item" href="tables_deportes.php">Ficha Resultados Ind</a>
           </div>
         </div>
       </li>

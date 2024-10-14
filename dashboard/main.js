@@ -5,10 +5,9 @@ $(document).ready(function () {
         targets: -1,
         data: null,
         defaultContent:
-          "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar'>prueba</button><button class='btn btn-danger btnBorrar'>Borrar</button></div></div>",
+          "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar' ><i class='fas fa-edit'></button><button class='btn btn-danger btnBorrar'>Borrar</button></div></div>",
       },
     ],
-
     language: {
       lengthMenu: "Mostrar _MENU_ registros",
       zeroRecords: "No se encontraron resultados",

@@ -6,12 +6,12 @@
     <div class="container-fluid">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Deportistas Individual y Grupal</h6>
+                <h6 class="m-0 font-weight-bold text-primary" style="font-size: 20px;">Deportistas Individual y Grupal</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="tablaPersonas" width="100%" cellspacing="0">
-                        <thead>
+                    <table id="tablaDeportistas" class="table table-bordered" style="width:100%">
+                        <thead class="text-center">
                             <tr>
                                 <th>N°</th>
                                 <th>Nombre</th>
