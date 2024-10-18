@@ -587,9 +587,12 @@ pre code {
 }
 
 .container-fluid {
-  width: auto;
-  padding-right: 0.75rem;
-  padding-left: 0.75rem;
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding-right: .75rem;
+  padding-left: .75rem;
   margin-right: auto;
   margin-left: auto;
 }
@@ -12006,4 +12009,5 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+
 
