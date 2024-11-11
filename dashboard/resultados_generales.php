@@ -22,7 +22,7 @@
                     </div>
                     <div class="col-2">
                         <label for="" class="col-form-label">Año:</label>
-                        <input type="text" class="form-control" id=""></input>
+                        <input type="text" class="form-control" id="ano" required>
                     </div>
                 </div>
                 <br>

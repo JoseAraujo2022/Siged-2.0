@@ -6,8 +6,8 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Registro de Eventos deportivos</h6>
         </div>
-        <form id="">
-            <div class="card-body">
+        <div class="card-body">
+            <form id="eventForm" autocomplete="off">
                 <div class="row">
                     <div class="col-4">
                         <label for="nombre" class="col-form-label">Nombre:</label>
@@ -75,16 +75,17 @@
                 <div class="row">
                     <div class="col-12">
                         <label for="" class="col-form-label">Notas</label>
-                        <input type="text" class="form-control">
+                        <textarea id="notas" name="notas" class="form-control"></textarea>
+                        
                     </div>
                 </div>
                 <br>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" id="btnGuardar" class="btn btn-primary">Guardar</button>
+                    <button type="submit" id="" class="btn btn-primary">Guardar</button>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
 

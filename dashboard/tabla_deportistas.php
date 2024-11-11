@@ -9,9 +9,9 @@
     $objeto = new Conexion();
     $conexion = $objeto->Conectar();
 
-    $consulta = "SELECT id, nombre, apellidos, federaciones, fecha_nacimiento, pais_nacimiento FROM deportistas";
+    $consulta = "SELECT PER_IDTIPO, PER_NOMBRES, PER_APELLIDOS, FROM tb_personas";
     $resultado = $conexion->prepare($consulta);
-    $resultado->execute();
+   
     $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
     ?>
     <style>
@@ -77,7 +77,7 @@
                             <th>Foto</th>
                             <th>Nombre</th>
                             <th>Apellidos</th>
-                            <th>Deportes</th>
+                            <th>Deporte</th>
                             <th>Fecha de Nacimiento</th>
                             <th>Provincia</th>
                             <th>Acciones</th>
@@ -89,11 +89,11 @@
                             ?>
                             <tr class="text-center">
                                 <td><img style="height: 2rem;  width: 2rem;" src="img/user.png"></td>
-                                <td><a href="tabla_persona.php"><?php echo $dat['nombre'] ?></a></td>
-                                <td><?php echo $dat['apellidos'] ?></td>
-                                <td><?php echo $dat['federaciones'] ?></td>
-                                <td><?php echo $dat['fecha_nacimiento'] ?></td>
-                                <td><?php echo $dat['pais_nacimiento'] ?></td>
+                                <td><a href="tabla_persona.php"><?php echo $dat['PER_NOMBRES'] ?></a></td>
+                                <td><?php echo $dat['PER_NOMBRES'] ?></td>
+                                <td><?php echo $dat['PER_NOMBRES'] ?></td>
+                                <td><?php echo $dat['PER_NOMBRES'] ?></td>
+                                <td><?php echo $dat['PER_NOMBRES'] ?></td>
                                 <td></td>
                             </tr>
                             <?php
@@ -120,7 +120,7 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-4">
-                                <label for="nombre" class="col-form-label">Nombre:</label>
+                                <label for="nombre" class="col-form-label">Nombres:</label>
                                 <input type="text" class="form-control" id="nombre">
                             </div>
                             <div class="col-4">
@@ -128,8 +128,30 @@
                                 <input type="text" class="form-control" id="apellidos">
                             </div>
                             <div class="col-4">
-                                <label for="federaciones" class="col-form-label">Federaciones:</label>
-                                <input type="text" class="form-control" id="federaciones">
+                                <label for="cedula" class="col-form-label">Cedula:</label>
+                                <input type="text" class="form-control" id="cedula">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="pasaporte" class="col-form-label">Pasaporte:</label>
+                                <input type="text" class="form-control" id="pasaporte">
+                            </div>
+                            <div class="col-4">
+                                <label for="sexo" class="col-form-label">Sexo:</label>
+                                <select name="sexo" class="form-control" id="sexo">
+                                    <option value="">Seleccione</option>
+                                    <option value="masculino">Masculino</option>
+                                    <option value="femenino">Femenino</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <label for="deporte" class="col-form-label">Deporte:</label>
+                                <select name="deporte" class="form-control" id="deporte">
+                                    <option value="">Seleccione</option>
+                                    <option value="atletismo">Atletismo</option>
+                                    <option value="natacion">Natacion</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row">
@@ -139,9 +161,39 @@
                                 <input type="date" class="form-control" id="fecha_nacimiento">
                             </div>
                             <div class="col-4">
-                                <label for="pais_nacimiento" class="col-form-label">Pais de
-                                    Nacimiento:</label>
-                                <input type="text" class="form-control" id="pais_nacimiento">
+                                <label for="pais_nacimiento" class="col-form-label">Pais de Nacimiento:</label>
+                                <select name="pais_nacimiento" class="form-control" id="pais_nacimiento">
+                                    <option value="">Seleccione</option>
+                                    <option value="alemania">Alemania</option>
+                                    <option value="colombia">Colombia</option>
+                                    <option value="ecuador">Ecuador</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <label for="provincia" class="col-form-label">Provincia de Nacimiento:</label>
+                                <select name="provincia" class="form-control" id="provincia">
+                                    <option value="">Seleccione</option>
+                                    <option value="azuay">Azuay</option>
+                                    <option value="bolivar">Bolívar</option>
+                                    <option value="cañar">Cañar</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="ciudad" class="col-form-label">Ciudad:</label>
+                                <select name="ciudad" class="form-control" id="ciudad">
+                                    <option value="">Seleccione</option>
+                                    <option value="guayaquil">Guayaquil</option>
+                                    <option value="quito">Quito</option>
+                                    <option value="cuenca">Cuenca</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <label for="fallecido" class="col-form-label">Fallecido:</label>
+                                <input type="text" class="form-control" id="fallecido" placeholder="Si o no" >
+                            </div>
+                            <div class="col-4">
                             </div>
                         </div>
                         <div class="row">

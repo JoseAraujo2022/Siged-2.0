@@ -55,7 +55,7 @@
                                 ?>
                                 <tr class="text-center">
                                     <td><img style="height: 2rem;  width: 2rem;" src="img/user.png"></td>
-                                    <td><?php echo $dat['nombre'] ?></td>
+                                    <td><a href="tabla_persona.php"><?php echo $dat['nombre'] ?></td>
                                     <td><?php echo $dat['apellidos'] ?></td>
                                     <td><?php echo $dat['federaciones'] ?></td>
                                     <td><?php echo $dat['fecha_nacimiento'] ?></td>
