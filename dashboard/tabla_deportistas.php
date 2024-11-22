@@ -64,7 +64,7 @@ $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
                             ?>
                             <tr class="text-center">
                                 <td><?php echo $dat['PER_ID'] ?></td>
-                                <td><a href="tabla_persona.php"><?php echo $dat['PER_NOMBRES'] ?></a></td>
+                                <td><a href="tabla_persona.php?id=<?php echo $dat['PER_ID']; ?>"><?php echo $dat['PER_NOMBRES']; ?></a></td>
                                 <td><?php echo $dat['PER_APELLIDOS'] ?></td>
                                 <td><?php echo $dat['DEPORTE'] ?></td>
                                 <td><?php echo $dat['PER_FECHANACIMIENTO'] ?></td>

@@ -18,15 +18,18 @@ $consulta = "
         a.PLATA,
         a.BRONCE,
         a.MARCA,
-        c.DEP_DESCRIPCION AS DEPORTE,
         b.NOMBRE AS EVENTO,
-        d.SEDES AS PAIS,
+        c.DEP_DESCRIPCION AS DEPORTE,
+        d.ID_PAIS,
         CONCAT(e.PER_NOMBRES, ' ', e.PER_APELLIDOS) AS PERSONA,
-        f.DEP_DESCRIPCION AS DEPORTE
+        f.DEP_DESCRIPCION AS DEPORTE,
+        g.PAI_NOMBRE AS PAIS
     FROM 
         tb_resultados a
     JOIN 
         tb_gev_evento b ON a.ID_EVENTO = b.ID_EVENTO
+    JOIN 
+       tb_deportes c ON a.ID_DEPORTE = c.DEP_ID
     JOIN 
         tb_gev_evento d ON a.ID_EVENTO = d.ID_EVENTO
 	JOIN 
@@ -34,7 +37,7 @@ $consulta = "
     JOIN 
         tb_deportes f ON a.ID_DEPORTE = f.DEP_ID
     JOIN 
-       tb_deportes c ON a.ID_DEPORTE = c.DEP_ID;
+        tb_pais g ON d.ID_PAIS = g.PAI_ID;
 ";
 $resultado = $conexion->prepare($consulta);
 $resultado->execute(); // Ejecuta la consulta
