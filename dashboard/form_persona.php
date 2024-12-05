@@ -1,247 +1,207 @@
 <?php require_once "vistas/parte_superior.php" ?>
-<!-- Begin Page Content -->
-<div class="container-fluid">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 20px;
-        }
 
+
+<style>
+    :root {
+        --primary-color: #0066cc;
+        --border-color: #e0e0e0;
+        --error-color: #dc3545;
+        --text-color: #333;
+        --background-white: #fff;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .form-section {
+        margin-bottom: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--text-color);
+    }
+
+    /* Header controls */
+    .header-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .gender-group {
+        display: flex;
+        gap: 1.5rem;
+    }
+
+    /* Switch toggle */
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 24px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    input:checked+.slider {
+        background-color: var(--primary-color);
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(26px);
+    }
+
+    
+    /* Photo upload * justify-content: flex-end;*/
+    .photo-section {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+    }
+
+    .photo-container {
+        position: relative;
+        width: 100px;
+        height: 100px;
+    }
+
+    .photo-upload {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 2px dashed var(--border-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        overflow: hidden;
+    }
+
+    .photo-text {
+        text-align: center;
+        font-size: 0.9rem;
+        color: #666;
+    }
+
+    .photo-size {
+        font-size: 0.8rem;
+        color: #999;
+    }
+
+    
+
+    .collapsible:after {
+        content: '▼';
+        font-size: 0.8rem;
+        color: #666;
+    }
+
+    .collapsible.active:after {
+        content: '▲';
+    }
+
+    .collapsible-content {
+        display: none;
+        padding: 1rem 0;
+    }
+
+    /* Add buttons */
+    .add-button {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem;
+        width: 100%;
+        background: none;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        cursor: pointer;
+        color: var(--primary-color);
+        font-size: 0.9rem;
+    }
+
+    .add-button:hover {
+        background-color: #f5f5f5;
+    }
+
+    /* Added items */
+    .added-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+        background-color: #f8f8f8;
+        border-radius: 4px;
+    }
+
+    .item-type {
+        min-width: 120px;
+    }
+
+    .remove-button {
+        color: var(--error-color);
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.2rem;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
         .container {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
+            padding: 1rem;
         }
-
-        .breadcrumb {
-            margin-bottom: 20px;
-        }
-
-        .breadcrumb a {
-            color: #666;
-            text-decoration: none;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .tabs {
-            display: flex;
-            gap: 20px;
-        }
-
-        .tab {
-            cursor: pointer;
-            padding: 5px 10px;
-            border-bottom: 2px solid transparent;
-        }
-
-        .tab.active {
-            border-bottom-color: #00a86b;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .btn-cancel {
-            background-color: #f0f0f0;
-        }
-
-        .btn-save {
-            background-color: #00a86b;
-            color: white;
-        }
-
-        .form-section {
-            margin-bottom: 20px;
-        }
-
-        .row {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 15px;
-        }
-
-        .col-4 {
-            flex: 1;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        input[type="text"],
-        input[type="date"],
-        select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        .radio-group {
-            display: flex;
-            gap: 15px;
-        }
-
-        .photo-upload {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .photo-placeholder {
-            width: 100px;
-            height: 100px;
-            background-color: #f0f0f0;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: #999;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .photo-placeholder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .photo-remove {
-            position: absolute;
-            top: 0;
-            right: 0;
-            background-color: red;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            font-size: 12px;
-            cursor: pointer;
-        }
-
-        .contact-info {
-            background-color: #f9f9f9;
-            padding: 10px;
-            border-radius: 4px;
-        }
-
-        .expandable {
-            cursor: pointer;
-        }
-
-        .expandable::after {
-            content: '▼';
-            margin-left: 5px;
-        }
-
-        .add-button {
-            background-color: transparent;
-            border: none;
-            color: #00a86b;
-            cursor: pointer;
-        }
-
-        .add-button::before {
-            content: '+';
-            margin-right: 5px;
-        }
-
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-
-        input:checked+.slider {
-            background-color: #00a86b;
-        }
-
-        input:checked+.slider:before {
-            transform: translateX(26px);
-        }
-    </style>
+    }
+</style>
+<div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <nav class="nav">
-                <div class="nav-items">
-                    <div class="buttons">
-                        <a href="tabla_persona.php" class="btn">← Volver</a>
-                        <a href="tabla_persona.php" class="btn btn-primary">Información personal</a>
-                        <a href="tabla_deportistas.php" class="btn btn-primary">Ayudas y becas</a>
-                        <a href="resultados_deportivos.php" class="btn btn-primary">Resultados deportivos</a>
-                    </div>
-                </div>
-                <a href="form_persona.php" class="btn btn-primary">
-                    <svg xmlns="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-
-                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                    </svg>
-                    Editar datos
-                </a>
-            </nav>
+            <h6 class="m-0 font-weight-bold text-primary">Formulario de Datos Personales</h6>
         </div>
-        <form>
-            <div class="form-section">
-                <h2>Datos personales</h2>
-                <div class="row">
-                    <div class="col-4 radio-group">
+        <div class="card-body">
+            <form id="personalDataForm">
+                <div class="section-title">Datos Personales</div>
+
+                <!-- Header controls -->
+                <div class="header-controls">
+                    <div class="gender-group">
                         <label>
                             <input type="radio" name="gender" value="hombre"> Hombre
                         </label>
@@ -249,154 +209,233 @@
                             <input type="radio" name="gender" value="mujer" checked> Mujer
                         </label>
                     </div>
-                    <div class="col-4">
-                        <label>Fallecido</label>
+                    <div class="status-group">
+                        <span>Fallecido</span>
                         <label class="switch">
                             <input type="checkbox">
                             <span class="slider"></span>
                         </label>
                     </div>
-                    <div class="photo-upload">
-                        <div class="photo-placeholder">
-                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-7JjvLoihvFeuLxzD7ojCHIN4NsKf9O.png"
-                                alt="Profile photo">
-                            <button class="photo-remove">✕</button>
-                        </div>
-                        <div>
-                            <p>Foto</p>
-                            <small>max. 1MB (1000KB)</small>
-                        </div>
-                    </div>
                 </div>
-                <div class="row">
-                    <div class="col-4">
-                        <label for="tratamiento">Tratamiento</label>
-                        <select id="tratamiento">
-                            <option>Seleccionar</option>
-                        </select>
-                    </div>
-                    <div class="col-4">
-                        <label for="titulo">Título</label>
-                        <select id="titulo">
-                            <option>Seleccionar</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-4">
-                        <label for="nombre">Nombre</label>
-                        <input type="text" id="nombre" value="NEISI PATRICIA">
-                    </div>
-                    <div class="col-4">
-                        <label for="nombreNormalizado">Nombre normalizado</label>
-                        <input type="text" id="nombreNormalizado" value="NEISI PATRICIA">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-4">
-                        <label for="primerApellido">Primer apellido</label>
-                        <input type="text" id="primerApellido" value="DAJOMES">
-                    </div>
-                    <div class="col-4">
-                        <label for="primerApellidoNormalizado">Primer apellido normalizado</label>
-                        <input type="text" id="primerApellidoNormalizado" value="DAJOMES">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-4">
-                        <label for="segundoApellido">Segundo apellido</label>
-                        <input type="text" id="segundoApellido" value="BARRERA">
-                    </div>
-                    <div class="col-4">
-                        <label for="segundoApellidoNormalizado">Segundo apellido normalizado</label>
-                        <input type="text" id="segundoApellidoNormalizado" value="BARRERA">
-                    </div>
-                </div>
-            </div>
 
-            <div class="form-section">
-                <h2>DATOS DE NACIMIENTO</h2>
-                <div class="row">
-                    <div class="col-4">
-                        <label for="pais">País*</label>
-                        <select id="pais">
-                            <option>Ecuador</option>
-                        </select>
-                    </div>
-                    <div class="col-4">
-                        <label for="primeraSubdivision">Primera subdivisión</label>
-                        <select id="primeraSubdivision">
-                            <option>Seleccionar</option>
-                        </select>
-                    </div>
-                    <div class="col-4">
-                        <label for="segundaSubdivision">Segunda subdivisión</label>
-                        <input type="text" id="segundaSubdivision">
+                <!-- Photo upload -->
+                <div class="photo-section">
+                    <div class="photo-container">
+                        <div class="photo-upload" id="photoUpload">
+                            <img id="photoPreview" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+                            <div class="photo-text">
+                                <div>Foto</div>
+                                <div class="photo-size">max. 1MB (1000KB)</div>
+                            </div>
+                        </div>
+                        <input type="file" id="photoInput" hidden accept="image/*">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-4">
-                        <label for="fechaNacimiento">Fecha de nacimiento</label>
-                        <input type="date" id="fechaNacimiento" value="1998-12-03">
-                    </div>
-                    <div class="col-4">
-                        <label for="poblacionNacimiento">Población de nacimiento</label>
-                        <input type="text" id="poblacionNacimiento" value="PASTAZA">
-                    </div>
-                    <div class="col-4">
-                        <label for="poblacionNacimientoNormalizada">Población de nacimiento normalizada</label>
-                        <input type="text" id="poblacionNacimientoNormalizada" value="PASTAZA">
-                    </div>
-                </div>
-            </div>
 
-            <div class="form-section">
-                <h2>DATOS DE NACIONALIDAD</h2>
-                <div class="row">
-                    <div class="col-4">
-                        <label for="pasaporte">Pasaporte</label>
-                        <input type="text" id="pasaporte" value="1600800352">
-                    </div>
-                    <div class="col-4">
-                        <label for="fechaCaducidadPasaporte">Fecha de caducidad del pasaporte</label>
-                        <input type="date" id="fechaCaducidadPasaporte" value="2022-08-09">
-                    </div>
+                <!-- Personal information -->
+                <div class="form-group">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" class="form-control" value="NEISI PATRICIA">
                 </div>
-                <div class="row">
-                    <div class="col-4">
-                        <label for="documentoIdentificacion">Documento de identificación</label>
-                        <input type="text" id="documentoIdentificacion">
-                    </div>
-                    <div class="col-4">
-                        <label for="fechaCaducidadDocumento">Fecha de caducidad del documento de
-                            identificación</label>
-                        <input type="date" id="fechaCaducidadDocumento">
-                    </div>
+
+                <div class="form-group">
+                    <label class="form-label">Primer apellido</label>
+                    <input type="text" class="form-control" value="DAJOMES">
                 </div>
-                <div class="row">
-                    <div class="col-4">
-                        <label for="nacionalidades" class="expandable">Nacionalidades</label>
-                        <select id="nacionalidades">
-                            <option>Seleccionar</option>
+
+                <div class="form-group">
+                    <label class="form-label">Segundo apellido</label>
+                    <input type="text" class="form-control" value="BARRERA">
+                </div>
+
+                <!-- Birth information -->
+                <div class="form-section">
+                    <div class="section-title">Datos de Nacimiento</div>
+
+                    <div class="form-group">
+                        <label class="form-label">País *</label>
+                        <select class="form-control">
+                            <option value="ecuador" selected>Ecuador</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Fecha de nacimiento</label>
+                        <input type="date" class="form-control" value="1998-05-12">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Población de nacimiento</label>
+                        <select class="form-control">
+                            <option value="pastaza" selected>Pastaza</option>
                         </select>
                     </div>
                 </div>
-                <button class="add-button">Añadir nacionalidad</button>
-            </div>
-            <div class="form-section contact-info">
-                <h2>DATOS DE CONTACTO</h2>
-                <p class="expandable">Teléfono</p>
-                <button class="add-button">Teléfono</button>
-                <p class="expandable">Correo electrónico</p>
-                <button class="add-button">Correo electrónico</button>
-                <p class="expandable">Red social</p>
-                <button class="add-button">Red social</button>
-                <p class="expandable">Direcciones Postales</p>
-                <button class="add-button">Añadir dirección postal</button>
-            </div>
-        </form>
+
+                <!-- Contact information -->
+                <div class="form-section">
+                    <div class="section-title">Datos de contacto</div>
+                    <div id="phoneContainer"></div>
+                    <button type="button" class="add-button" onclick="addPhone()">
+                        + Añadir teléfono
+                    </button>
+                    <br>
+                    <div id="emailContainer"></div>
+                    <button type="button" class="add-button" onclick="addEmail()">
+                        + Añadir correo electrónico
+                    </button>
+                    <br>
+                    <div id="socialContainer"></div>
+                    <button type="button" class="add-button" onclick="addSocial()">
+                        + Añadir red social
+                    </button>
+                </div>
+
+                <!-- Nationality information -->
+                <div class="form-section">
+                    <div class="section-title">Datos de Nacionalidad</div>
+
+                    <div class="form-group">
+                        <label class="form-label">Pasaporte</label>
+                        <input type="text" class="form-control" value="1600890352">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Fecha de caducidad del pasaporte</label>
+                        <input type="date" class="form-control" value="2022-09-08">
+                    </div>
+                </div>
+
+                <!-- Nationality add-->
+                <div class="form-section">
+                    <div class="section-title">Nacionalidades</div>
+                    <div id="nationalityContainer"></div>
+                    <button type="button" class="add-button" onclick="addNationality()">
+                        + Añadir nacionalidad
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<!--FIN del cont principal-->
+<script>
+    // Collapsible functionality
+    document.querySelectorAll('.collapsible').forEach(button => {
+        button.addEventListener('click', function () {
+            this.classList.toggle('active');
+            const content = this.nextElementSibling;
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+            } else {
+                content.style.display = 'block';
+            }
+        });
+    });
+
+    // Photo upload functionality
+    const photoUpload = document.getElementById('photoUpload');
+    const photoInput = document.getElementById('photoInput');
+    const photoPreview = document.getElementById('photoPreview');
+    const photoText = document.querySelector('.photo-text');
+
+    photoUpload.addEventListener('click', () => photoInput.click());
+
+    photoInput.addEventListener('change', function (e) {
+        const file = e.target.files[0];
+        if (file && file.size <= 1000000) { // 1MB limit
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                photoPreview.src = e.target.result;
+                photoPreview.style.display = 'block';
+                photoText.style.display = 'none';
+            }
+            reader.readAsDataURL(file);
+        } else {
+            alert('La imagen debe ser menor a 1MB');
+        }
+    });
+
+    // Add item functions
+    function createAddedItem(type, options = ['Casa', 'Trabajo', 'Móvil']) {
+        const item = document.createElement('div');
+        item.className = 'added-item';
+
+        const select = document.createElement('select');
+        select.className = 'form-control item-type';
+        options.forEach(option => {
+            const opt = document.createElement('option');
+            opt.value = option.toLowerCase();
+            opt.textContent = option;
+            select.appendChild(opt);
+        });
+
+        const input = document.createElement('input');
+        input.type = type;
+        input.className = 'form-control';
+
+        const removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.className = 'remove-button';
+        removeBtn.textContent = '×';
+        removeBtn.onclick = () => item.remove();
+
+        item.appendChild(select);
+        item.appendChild(input);
+        item.appendChild(removeBtn);
+
+        return item;
+    }
+
+    function addPhone() {
+        const container = document.getElementById('phoneContainer');
+        container.appendChild(createAddedItem('tel', ['Casa', 'Trabajo', 'Móvil']));
+    }
+
+    function addEmail() {
+        const container = document.getElementById('emailContainer');
+        container.appendChild(createAddedItem('email', ['Principal', 'Trabajo', 'Personal']));
+    }
+
+    function addSocial() {
+        const container = document.getElementById('socialContainer');
+        container.appendChild(createAddedItem('text', ['500px', 'Facebook', 'Twitter', 'Instagram']));
+    }
+
+    function addNationality() {
+        const container = document.getElementById('nationalityContainer');
+        const item = document.createElement('div');
+        item.className = 'added-item';
+
+        const countrySelect = document.createElement('select');
+        countrySelect.className = 'form-control';
+        ['Ecuador', 'Colombia', 'Perú'].forEach(country => {
+            const option = document.createElement('option');
+            option.value = country.toLowerCase();
+            option.textContent = country;
+            countrySelect.appendChild(option);
+        });
+
+        const startDate = document.createElement('input');
+        startDate.type = 'date';
+        startDate.className = 'form-control';
+
+        const endDate = document.createElement('input');
+        endDate.type = 'date';
+        endDate.className = 'form-control';
+
+        const removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.className = 'remove-button';
+        removeBtn.textContent = '×';
+        removeBtn.onclick = () => item.remove();
+
+        item.appendChild(countrySelect);
+        item.appendChild(startDate);
+        item.appendChild(endDate);
+        item.appendChild(removeBtn);
+
+        container.appendChild(item);
+    }
+</script>
+
 <?php require_once "vistas/parte_inferior.php" ?>

@@ -48,13 +48,10 @@ if (isset($_GET['id'])) {
 }
 ?>
 <style>
+    .btn { padding: 10px 15px; border: 1px solid #ccc; border-radius: 5px; }
     /* Estilos personalizados */
-    .btn-primary {
-        background-color: #00a86b;
-        color: white;
-        cursor: pointer;
-    }
-
+    /* Estilos de botones */
+    .btn-primary { background-color: #00a86b; color: white; border: none; border-radius: 4px; cursor: pointer; }
     /* Modal header style */
     .modal-header {
         cursor: move;
@@ -67,7 +64,7 @@ if (isset($_GET['id'])) {
             <nav class="nav">
                 <div class="nav-items">
                     <div class="buttons">
-                        <a href="tabla_deportistas.php" class="btn">← Volver</a>
+                        <a href="tabla_deportistas.php" class="btn"><i class="fas fa-arrow-left"></i> Volver</a>
                         <!--a href="tabla_deportistas.php" class="btn btn-primary">Información personal</a-->
                         <a href="resultados_deportivos.php?id=<?php echo $id; ?>" class="btn btn-primary">Resultados deportivos</a>
                         <a href="resultados_deportivos.php?id=<?php echo $id; ?>"  data-toggle="modal" data-target="#modalCRUD" class="btn btn-primary">Editar</a>
@@ -184,15 +181,14 @@ if (isset($_GET['id'])) {
                                 <div class="col-6">
                                     <label for="edit_pais" class="col-form-label">Pais:</label>
                                     <select class="form-control" id="edit_pais">
-                                        <option value="Masculino" selected>Masculino</option>
-                                        <option value="Femenino">Femenino</option>
+                                        <option value="ecuador" selected>Ecuador</option>
+                                        <option value="colombia">Colombia</option>
                                     </select>
                                 </div>
                                 <div class="col-6">
                                     <label for="edit_provincia" class="col-form-label">Provincia:</label>
                                     <select class="form-control" id="edit_provincia">
-                                        <option value="Masculino" selected>Masculino</option>
-                                        <option value="Femenino">Femenino</option>
+                                        <option value="pastaza" selected>Pastaza</option>
                                     </select>
                                 </div>
                             </div>
@@ -200,15 +196,15 @@ if (isset($_GET['id'])) {
                                 <div class="col-6">
                                     <label for="edit_ciudad" class="col-form-label">Ciudad:</label>
                                     <select class="form-control" id="edit_ciudad">
-                                        <option value="Masculino" selected>Masculino</option>
-                                        <option value="Femenino">Femenino</option>
+                                        <option value="gye" selected>Guayaquil</option>
+                                        <option value="quito">Quito</option>
                                     </select>
                                 </div>
                                 <div class="col-6">
                                     <label for="edit_fallecido" class="col-form-label">Fallecido:</label>
                                     <select class="form-control" id="edit_fallecido">
-                                        <option value="Masculino" selected>Si</option>
-                                        <option value="Femenino">No</option>
+                                        <option value="si" selected>Si</option>
+                                        <option value="no">No</option>
                                     </select>
                                 </div>
                             </div>

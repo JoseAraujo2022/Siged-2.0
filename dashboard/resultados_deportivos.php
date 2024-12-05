@@ -41,15 +41,27 @@ if (isset($_GET['id'])) {
     $resultado = $conexion->prepare($consulta);
     $resultado->bindParam(':id', $id, PDO::PARAM_INT);
     $resultado->execute();
-    $data = $resultado->fetch(PDO::FETCH_ASSOC); // Obtener solo una fila (la de la persona seleccionada)
+    $data = $resultado->fetchAll(PDO::FETCH_ASSOC); // Obtener todas las filas
+
+    // Reagrupar resultados por ID_EVENTO
+    $groupedData = [];
+    foreach ($data as $row) {
+        $evento = $row['ID_EVENTO'];
+        if (!isset($groupedData[$evento])) {
+            $groupedData[$evento] = [
+                'EVENTO' => $row['EVENTO'],
+                'DETALLES' => []
+            ];
+        }
+        $groupedData[$evento]['DETALLES'][] = $row;
+    }
 } else {
-    // Si no se pasa el id, redirigir o mostrar un mensaje de error
     echo "No se especificó una persona.";
     exit;
 }
 ?>
 <style>
-    .medal { color: gold; margin-right: 5px; }
+.medal { color: gold; margin-right: 5px; }
     details { margin-bottom: 20px; }
     summary { cursor: pointer; font-weight: bold; font-size: 20px; }
     table { width: 100%; border-collapse: collapse; }
@@ -70,104 +82,72 @@ if (isset($_GET['id'])) {
     .medal-card, .medal-container { display: flex; justify-content: center; align-items: center; }
     .profile-container { box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); max-width: 600px; margin: auto; }
     .athlete-name { font-size: 24px; font-weight: bold; color: #333; text-align: center; margin-bottom: 15px; }
-    .medal-icon { font-size: 24px; margin-right: 10px; }
+    .medal-icon { font-size: 31px; margin-right: 10px; vertical-align: middle;}
+    .medal-iconos { font-size: 26px; margin-right: 10px; vertical-align: middle;}
     .medal-count { font-size: 24px; font-weight: bold; color: #0066cc; }
 </style>
+
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <nav class="nav">
                 <div class="nav-items">
                     <div class="buttons">
-                        <a href="tabla_persona.php?id=<?php echo $id; ?>" class="btn">← Volver</a>
+                        <a href="tabla_persona.php?id=<?php echo $id; ?>" class="btn"><i class="fas fa-arrow-left"></i> Volver</a>
                         <a href="tabla_persona.php?id=<?php echo $id; ?>" class="btn btn-primary">Información personal</a>
                     </div>
                 </div>
                 <a href="form_persona.php" class="btn btn-primary">
-
-                    </svg>
                     Editar datos
                 </a>
             </nav>
         </div>
         <div class="card-body">
             <?php if ($data): ?>
-                <div class="">
-                    <h1 class="athlete-name"><?php echo $data['PERSONA'] ?></h1>
+                <div>
+                    <h1 class="athlete-name"><?php echo $data[0]['PERSONA'] ?></h1>
                     <div class="medal-container">
                         <span class="medal-icon">🥇</span>
-                        <span class="medal-count">3</span>
+                        <span class="medal-count"></span>
                     </div>
                 </div>
+
+                <!-- JUEGOS REGIONALES -->
                 <details>
                     <summary>JUEGOS REGIONALES</summary>
                     <br>
-                    <table>
-                        <tr>
-                            <td>
-                                <img src="https://conpaas.einzelnet.com/services/sportsservice/api/media/287eadd638c36516c14a93bb9fcbedda760199b0"
-                                    alt="Logo Juegos Bolivarianos" class="event-logo"></td>
-                            <td><?php echo $data['EVENTO'] ?></td>
-                            <td>🏅<?php echo $data['ORO'] ?></td>
-                        </tr>
-                    </table>
-                    <table>
-                        <tr>
-                            <td>julio 4<br>15:30 - 18:00</td>
-                            <td><?php echo $data['DEPORTE'] ?><br><?php echo $data['DIVISION'] ?></td>
-                            <!--td>Final<br>Grupo A</td--->
-                            <td><?php echo $data['ORO'] ?></td>
-                            <td>Oro<br>2022-07-04</td>
-                            <td>🏅</td>
-                        </tr>
-                        <tr>
-                            <td>julio 4<br>15:30 - 18:00</td>
-                            <td><?php echo $data['DEPORTE'] ?><br><?php echo $data['DIVISION'] ?></td>
-                            <td><?php echo $data['PLATA'] ?></td>
-                            <td>Plata<br>2022-07-04</td>
-                            <td>🏅</td>
-                        </tr>
-                        <tr>
-                            <td>julio 4<br>15:30 - 18:00</td>
-                            <td><?php echo $data['DEPORTE'] ?><br><?php echo $data['DIVISION'] ?></td>
-                            <td><?php echo $data['BRONCE'] ?></td>
-                            <td>Bronce<br>2022-07-04</td>
-                            <td>🏅</td>
-                        </tr>
-                    </table>
+                    <?php foreach ($groupedData as $evento => $info): ?>
+                        <span><?php echo $info['EVENTO']; ?></span>
+                        <table>
+                            <tr>
+                                <th>Deporte</th>
+                                <th>Medallas</th>
+                                <th>Fecha</th>
+                            </tr>
+                            <?php foreach ($info['DETALLES'] as $detalle): ?>
+                                <tr>
+                                    <td><?php echo $detalle['DEPORTE'] . " - " . $detalle['DIVISION']; ?></td>
+                                    <td class="medal-iconos">
+                                        <?php if ($detalle['ORO'] > 0) echo "🥇" . $detalle['ORO']; ?>
+                                        <?php if ($detalle['PLATA'] > 0) echo "🥈" . $detalle['PLATA']; ?>
+                                        <?php if ($detalle['BRONCE'] > 0) echo "🥉" . $detalle['BRONCE']; ?>
+                                    </td>
+                                    <td><?php echo $detalle['FECHA_REGISTRO']; ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </table>
+                        <br>
+                    <?php endforeach; ?>
                 </details>
 
+                <!-- JUEGOS OLÍMPICOS -->
                 <details>
                     <summary>JUEGOS OLÍMPICOS</summary>
                     <br>
-                    <table>
-                        <tr>
-                            <td>
-                                <img src="https://conpaas.einzelnet.com/services/sportsservice/api/media/549abe57336e3ade07771340f2187932133dfd15"
-                                    alt="Logo Juegos Olímpicos" class="event-logo">
-                                2021
-                            </td>
-                            <td>XXXII Juegos Olímpicos de Verano Tokio 2020</td>
-                            <td>🏅</td>
-                        </tr>
-                    </table>
-                    <table>
-                        <tr>
-                            <td>agosto 1<br>05:50 - 07:40</td>
-                            <td>Halterofilia<br>Mujeres 76kg</td>
-                            <td>Final<br>Grupo A</td>
-                            <td>1</td>
-                            <td>263</td>
-                            <td>Oro<br>2021-08-01</td>
-                            <td>🏅</td>
-                        </tr>
-                    </table>
+                    <!-- Similar estructura para Juegos Olímpicos -->
                 </details>
-            </div>
-        <?php else: ?>
-            <p>La persona no fue encontrada.</p>
-        <?php endif; ?>
+            <?php endif; ?>
+        </div>
     </div>
 </div>
-<!--FIN del cont principal-->
 <?php require_once "vistas/parte_inferior.php" ?>

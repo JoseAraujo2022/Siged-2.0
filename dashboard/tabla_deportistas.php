@@ -26,19 +26,26 @@ $resultado = $conexion->prepare($consulta);
 $resultado->execute(); // Ejecuta la consulta
 $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
+<style>
+    /* Estilos personalizados */
+    .btn-primary {
+        background-color: #00a86b;
+        color: white;
+        cursor: pointer;
+    }
+</style>
 <!--INICIO del cont principal-->
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary" style="font-size: 20px;">Deportistas</h6>
+            <h6 class="m-0 font-weight-bold text-primary" >Deportistas</h6>
         </div>
         <br>
         <div class="col-5">
             <nav class="nav">
                 <div class="nav-items">
                     <div class="buttons">
-                        <button id="btnNuevo" type="button" class="add-button" data-toggle="modal">Añadir
+                        <button id="btnNuevo" type="button" class="btn btn-success"  data-toggle="modal">Añadir
                             deportista</button>
                     </div>
                 </div>
@@ -81,9 +88,7 @@ $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
                 </table>
             </div>
         </div>
-
     </div>
-
     <!-- Modal -->
     <div class="modal fade" id="modalCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
