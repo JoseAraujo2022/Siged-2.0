@@ -1,6 +1,5 @@
 <?php require_once "vistas/parte_superior.php" ?>
 
-
 <style>
     :root {
         --primary-color: #0066cc;
@@ -86,7 +85,7 @@
         transform: translateX(26px);
     }
 
-    
+
     /* Photo upload * justify-content: flex-end;*/
     .photo-section {
         display: flex;
@@ -124,7 +123,7 @@
         color: #999;
     }
 
-    
+
 
     .collapsible:after {
         content: '▼';
@@ -190,9 +189,9 @@
         }
     }
 </style>
-<div class="container-fluid">
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
+<div class="modal-dialog"">
+    <div class="modal-content">
+        <div class="modal-header">
             <h6 class="m-0 font-weight-bold text-primary">Formulario de Datos Personales</h6>
         </div>
         <div class="card-body">
@@ -314,9 +313,15 @@
                         + Añadir nacionalidad
                     </button>
                 </div>
-            </form>
         </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="submit" class="btn btn-secondary">Cancelar</button>
+        </div>
+
+        </form>
     </div>
+</div>
 
 <script>
     // Collapsible functionality

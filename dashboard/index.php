@@ -1,5 +1,54 @@
 <?php require_once "vistas/parte_superior.php" ?>
 
+<?php 
+include_once 'bd/conexion.php';
+$objeto = new Conexion();
+$conexion = $objeto->Conectar();
+
+// Consulta para obtener la suma de los deportes con estado 'A'
+$consultaDeportes = "
+    SELECT 
+        COUNT(d.DEP_ID) AS total_deportes_activos
+    FROM 
+        tb_deportes d
+    WHERE 
+        d.DEP_ESTADO = 'A'
+";
+$resultadoDeportes = $conexion->prepare($consultaDeportes);
+$resultadoDeportes->execute(); // Ejecuta la consulta
+$dataDeportes = $resultadoDeportes->fetch(PDO::FETCH_ASSOC);
+
+// Guardamos el resultado de la suma en una variable
+$totalDeportesActivos = $dataDeportes['total_deportes_activos'];
+
+// Consulta para obtener el total de personas en la tabla tb_personas
+$consultaPersonas = "
+    SELECT 
+        COUNT(p.PER_ID) AS total_personas
+    FROM 
+        tb_personas p
+";
+$resultadoPersonas = $conexion->prepare($consultaPersonas);
+$resultadoPersonas->execute(); // Ejecuta la consulta
+$dataPersonas = $resultadoPersonas->fetch(PDO::FETCH_ASSOC);
+
+// Guardamos el resultado de la suma en una variable
+$totalPersonas = $dataPersonas['total_personas'];
+
+// Consulta para obtener el total de eventos en la tabla tb_gev_evento
+$consultaEventos = "
+    SELECT 
+        COUNT(e.ID_EVENTO) AS total_eventos
+    FROM 
+        tb_gev_evento e
+";
+$resultadoEventos = $conexion->prepare($consultaEventos);
+$resultadoEventos->execute(); // Ejecuta la consulta
+$dataEventos = $resultadoEventos->fetch(PDO::FETCH_ASSOC);
+
+// Guardamos el resultado de la suma en una variable
+$totalEventos = $dataEventos['total_eventos'];
+?>
 
 
 <!--INICIO del cont principal-->
@@ -21,14 +70,14 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Earnings (Monthly)
+                                Deportes Activos
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                $40,000
+                                <?php echo $totalDeportesActivos; ?> <!-- Mostramos la suma aquí -->
                             </div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            <i class="fas fa-volleyball-ball fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -42,14 +91,14 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Earnings (Annual)
+                                Atletas Activos
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                $215,000
+                                <?php echo $totalPersonas; ?> <!-- Mostramos la suma aquí -->
                             </div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            <i class="fas fa-running fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -57,18 +106,18 @@
         </div>
 
         <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
+        <!--div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                Tasks
+                                EVENTOS DEPORTIVOS
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                        50%
+                                    
                                     </div>
                                 </div>
                                 <div class="col">
@@ -85,7 +134,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </-div----->
 
         <!-- Pending Requests Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
@@ -94,10 +143,10 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Pending Requests
+                               Eventos Deportivos
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                18
+                            <?php echo $totalEventos; ?>
                             </div>
                         </div>
                         <div class="col-auto">
@@ -188,7 +237,7 @@
         </div>
     </div>
 
-    
+
 
 
 </div>

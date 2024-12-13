@@ -67,10 +67,6 @@
 <script src="vendor/dataTables/jquery.dataTables.min.js"></script>
 <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-<!-- Page level custom scripts -->
-<script src="js/demo/datatables-demo.js"></script>
-
-
 <!-- Page level plugins -->
 <script src="vendor/chart.js/Chart.min.js"></script>
 
@@ -84,6 +80,13 @@
 <script src="datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
 <script src="datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
 <script src="datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
+
+
+
+
+<!-- jsPDF for exporting to PDF -->
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
 
 </body>
 

@@ -17,7 +17,7 @@ if ($_SESSION["s_usuario"] === null) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Siged 1.1</title>
+  <title>COMITE OLIMPICO ECUATORIANO</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -54,7 +54,7 @@ if ($_SESSION["s_usuario"] === null) {
           <!--i class="fas fa-laugh-wink"></i-->
           <i class="fas fa-globe-americas"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Siged <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Sistema <sup>2</sup></div>
       </a>
 
       <!-- Divider -->
@@ -79,12 +79,12 @@ if ($_SESSION["s_usuario"] === null) {
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
           aria-controls="collapseOne">
           <i class="fa fa-user" aria-hidden="true"></i>
-          <span>Personas</span>
+          <span>Registro de Datos</span>
         </a>
         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" href="reg_personas.php">Personas</a>
             <a class="collapse-item" href="tabla_deportistas.php">Deportistas</a>
-            <a class="collapse-item" href="tabla_oficiales.php">Oficiales</a>
             <a class="collapse-item" href="tables_deportes.php">Ficha Resultados Ind</a>
           </div>
         </div>
