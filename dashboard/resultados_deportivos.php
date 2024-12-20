@@ -98,179 +98,35 @@ if (isset($_GET['id'])) {
 }
 ?>
 <style>
-    /* Mantener tus estilos originales */
-    .medal {
-        color: gold;
-        margin-right: 5px;
-    }
-
-    details {
-        margin-bottom: 20px;
-    }
-
-    summary {
-        cursor: pointer;
-        font-weight: bold;
-        font-size: 20px;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    th,
-    td {
-        padding: 10px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-        word-wrap: break-word;
-        /* Asegura que las palabras largas se ajusten */
-    }
-
-    tr {
-        display: flex;
-        flex-wrap: wrap;
-        /* Permite que las celdas se ajusten en varias líneas si es necesario */
-    }
-
-    th,
-    td {
-        flex: 1;
-        /* Asegura que cada celda ocupe el mismo espacio */
-        min-width: 150px;
-        /* Establece un ancho mínimo para las celdas */
-    }
-
-    /* Estilos específicos para cada columna */
-    th:first-child,
-    td:first-child {
-        flex: 2;
-        /* La columna "Deporte" puede ser más ancha si es necesario */
-    }
-
-    th:nth-child(2),
-    td:nth-child(2) {
-        flex: 1.5;
-        /* La columna "Marca" tiene un tamaño intermedio */
-    }
-
-    th:nth-child(3),
-    td:nth-child(3) {
-        flex: 2;
-        /* La columna "Medallas" puede ser más amplia */
-    }
-
-    .event-logo {
-        width: 30px;
-        height: 30px;
-        margin-right: 10px;
-        vertical-align: middle;
-    }
-
-    h1 {
-        margin: 0 0 20px 0;
-    }
-
-    .bold {
-        font-weight: bold;
-    }
-
-    /* Navigation Styles */
-    .nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .nav-items {
-        display: flex;
-        gap: 20px;
-    }
-
-    .nav-item,
-    .btn {
-        text-decoration: none;
-        color: black;
-    }
-
-    .btn {
-        padding: 10px 15px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-
-    .btn-primary {
-        background-color: #00a86b;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    /* Medal Section */
-    .medal-card,
-    .profile-container,
-    .medal-container {
-        background-color: white;
-        border-radius: 8px;
-        padding: 15px;
-
-    }
-
-    .medal-card,
-    .medal-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .profile-container {
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        max-width: 600px;
-        margin: auto;
-    }
-
-    .athlete-name {
-        font-size: 24px;
-        font-weight: bold;
-        color: #333;
-        text-align: center;
-        margin-bottom: 15px;
-    }
-
-    .evento {
-        font-size: 20px;
-        font-weight: bold;
-        color: #514c4c;
-        margin-left: 10px;
-    }
-
-    .medal-iconos {
-        font-size: 26px;
-        margin-right: 10px;
-        vertical-align: middle;
-    }
-
-    .medal-icon {
-        font-size: 35px;
-        margin-right: 5px;
-        vertical-align: middle;
-    }
-
-    .medal-count {
-        font-size: 24px;
-        font-weight: bold;
-        color: #0066cc;
-        margin-left: -2px;
-        /* Ajustar el espacio entre el icono y el texto */
-    }
-
-    .minusc {
-        text-transform: lowercase;
-        /* Convierte el texto a minúsculas */
-    }
+    .medal { color: gold; margin-right: 5px; }
+    details { margin-bottom: 20px; }
+    summary { cursor: pointer; font-weight: bold; font-size: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; word-wrap: break-word; }
+    tr { display: flex; flex-wrap: wrap; }
+    th, td { flex: 1; min-width: 150px; }
+    th:first-child, td:first-child { flex: 2; }
+    th:nth-child(2), td:nth-child(2) { flex: 1.5; }
+    th:nth-child(3), td:nth-child(3) { flex: 2; }
+    .event-logo { width: 30px; height: 30px; margin-right: 10px; vertical-align: middle; }
+    h1 { margin: 0 0 20px 0; }
+    .bold { font-weight: bold; }
+    .nav { display: flex; justify-content: space-between; align-items: center; }
+    .nav-items { display: flex; gap: 20px; }
+    .nav-item, .btn { text-decoration: none; color: black; }
+    .btn { padding: 10px 15px; border: 1px solid #ccc; border-radius: 5px; }
+    .btn-primary { background-color: #00a86b; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    .medal-card, .profile-container, .medal-container { background-color: white; border-radius: 8px; padding: 15px; }
+    .medal-card, .medal-container { display: flex; justify-content: center; align-items: center; }
+    .profile-container { box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); max-width: 600px; margin: auto; }
+    .athlete-name { font-size: 24px; font-weight: bold; color: #333; text-align: center; margin-bottom: 15px; }
+    .evento { font-size: 20px; font-weight: bold; color: #514c4c; margin-left: 10px; }
+    .medal-iconos { font-size: 26px; margin-right: 10px; vertical-align: middle; }
+    .medal-icon { font-size: 35px; margin-right: 5px; vertical-align: middle; }
+    .medal-count { font-size: 24px; font-weight: bold; color: #0066cc; margin-left: -2px; }
+    .minusc { text-transform: lowercase; }
 </style>
+
 
 <div class="container-fluid">
     <div class="card shadow mb-4">
@@ -354,7 +210,7 @@ if (isset($_GET['id'])) {
                                     </td>
                                     <td>
                                         <?php echo $detalle['SEDES']; ?>
-                                        <br> <?php echo $detalle['PAIS_NOMBRE']; ?>
+                                        <br><?php echo $detalle['PAIS_NOMBRE']; ?>
                                     </td>
                                     <td><?php echo $detalle['ORDEN']; ?></td>
                                     <td><?php echo $detalle['MARCA']; ?></td>
