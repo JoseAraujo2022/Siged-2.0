@@ -5,7 +5,7 @@ $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 
 $consulta = "SELECT PER_ID, PER_NOMBRES, PER_APELLIDOS, PER_CEDULA, PER_PASAPORTE, PER_DEPORTE, PER_FECHANACIMIENTO, PER_FECH_VENCE_PASS, 
-PER_DIRECCION FROM tb_personas";
+PER_DIRECCION, PER_PAIS FROM tb_personas";
 $resultado = $conexion->prepare($consulta);
 $resultado->execute();
 $personas = $resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -264,8 +264,8 @@ $deportes = $resultado->fetchAll(PDO::FETCH_ASSOC);
                                         class="form-control" required>
                                         <option value="">Seleccione una Provincia</option>
                                         <?php
-                                        foreach ($provincia as $pro):
-                                            echo '<option value="' . $pro["PRO_ID"] . '">' . $pro["PRO_DESCRIPCION"] . '</option>';
+                                        foreach ($provincia as $prov):
+                                            echo '<option value="' . $prov["PRO_ID"] . '">' . $prov["PRO_DESCRIPCION"] . '</option>';
                                         endforeach;
                                         ?>
                                     </select>
@@ -518,8 +518,8 @@ $deportes = $resultado->fetchAll(PDO::FETCH_ASSOC);
                                 <thead>
                                     <tr>
                                         <th>No.</th>
-                                        <th>Apellidos</th>
                                         <th>Nombres</th>
+                                        <th>Apellidos</th>
                                         <th>Cédula</th>
                                         <th>Pasaporte</th>
                                         <th>Deporte</th>
@@ -542,21 +542,27 @@ $deportes = $resultado->fetchAll(PDO::FETCH_ASSOC);
 
 <script>
     document.getElementById("btnBuscar").addEventListener("click", function () {
+        // Obtener valores de los campos
         var deporte = document.getElementById("deporte").value.trim();
         var nombre = document.getElementById("nombre").value.trim();
         var apellidos = document.getElementById("apellidos").value.trim();
         var pasaporte = document.getElementById("pasaporte").value.trim();
         var fecha_nacimiento = document.getElementById("fecha_nacimiento").value.trim();
+        var pais_nacimiento = document.getElementById("pais_nacimiento").value.trim(); // Obtener el valor del select correctamente
+        var ciudad_reside = document.getElementById("ciudad_reside").value.trim(); // Obtener el valor del select correctamente
+        var direccion = document.getElementById("direccion").value.trim(); 
+        var telefono = document.getElementById("telefono").value.trim();
+        var nombre_contacto = document.getElementById("nombre_contacto").value.trim();
+        var email = document.getElementById("email").value.trim();
 
         var tbody = document.getElementById("resultados");
         tbody.innerHTML = ""; // Limpiar resultados anteriores
 
+        // Construir el objeto de datos para enviar
         var data = {};
         if (deporte) data.deporte = deporte;
         if (nombre) data.nombre = nombre;
         if (apellidos) data.apellidos = apellidos;
-        if (pasaporte) data.pasaporte = pasaporte;
-        if (fecha_nacimiento) data.fecha_nacimiento = fecha_nacimiento;
 
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "consulta_personas.php", true);
@@ -569,82 +575,47 @@ $deportes = $resultado->fetchAll(PDO::FETCH_ASSOC);
             if (xhr.status == 200) {
                 var resultados = JSON.parse(xhr.responseText);
 
-                // Verificar qué datos se están recibiendo
-                console.log(resultados);
-
                 // Recorrer los resultados y agregarlos a la tabla
                 resultados.forEach(function (persona, index) {
                     var row = document.createElement("tr");
 
-                    var cell1 = document.createElement("td");
-                    cell1.textContent = index + 1;
-                    var cell2 = document.createElement("td");
-                    cell2.textContent = persona.PER_NOMBRES;
-                    var cell3 = document.createElement("td");
-                    cell3.textContent = persona.PER_APELLIDOS;
-                    var cell4 = document.createElement("td");
-                    cell4.textContent = persona.PER_CEDULA;
-                    var cell5 = document.createElement("td");
-                    cell5.textContent = persona.PER_PASAPORTE;
-                    var cell6 = document.createElement("td");
-                    cell6.textContent = persona.DEPORTE;
-                    var cell7 = document.createElement("td");
-                    cell7.textContent = persona.PER_FECHANACIMIENTO;
-
-                    row.appendChild(cell1);
-                    row.appendChild(cell2);
-                    row.appendChild(cell3);
-                    row.appendChild(cell4);
-                    row.appendChild(cell5);
-                    row.appendChild(cell6);
-                    row.appendChild(cell7);
+                    row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${persona.PER_NOMBRES}</td>
+                    <td>${persona.PER_APELLIDOS}</td>
+                    <td>${persona.PER_CEDULA}</td>
+                    <td>${persona.PER_PASAPORTE}</td>
+                    <td>${persona.DEPORTE}</td>
+                    <td>${persona.PER_FECHANACIMIENTO}</td>
+                `;
 
                     tbody.appendChild(row);
 
                     // Añadir evento click a cada fila
                     row.addEventListener("click", function () {
                         // Remover clase seleccionada de otras filas
-                        var rows = tbody.querySelectorAll("tr");
-                        rows.forEach(function (r) {
-                            r.classList.remove("selected-row");
-                        });
-
-                        // Agregar clase seleccionada a la fila actual
+                        Array.from(tbody.querySelectorAll("tr")).forEach(r => r.classList.remove("selected-row"));
                         row.classList.add("selected-row");
 
-                        // Mostrar los valores recibidos en el formulario
+                        // Mostrar los valores en el formulario
                         document.getElementById("nombres").value = persona.PER_NOMBRES;
                         document.getElementById("apellidos").value = persona.PER_APELLIDOS;
                         document.getElementById("cedula").value = persona.PER_CEDULA;
                         document.getElementById("pasaporte").value = persona.PER_PASAPORTE;
                         document.getElementById("deporte").value = persona.DEPORTE;
                         document.getElementById("fecha_nacimiento").value = persona.PER_FECHANACIMIENTO;
-
-                        // Verifica si todos los campos están disponibles
-                        document.getElementById("ciudad_nacimiento").value = persona.PER_CIUDAD_NACIMIENTO || '';
-                        document.getElementById("provincia_nacimiento").value = persona.PER_PROVINCIA || '';
-                        document.getElementById("pais_nacimiento").value = persona.PER_PAIS || '';
-                        document.getElementById("tipo_sangre").value = persona.PER_TIPO_SANGRE || '';
-                        document.getElementById("tipo_persona").value = persona.PER_IDTIPO || '';
-                        document.getElementById("genero").value = persona.PER_SEXO || '';
-                        document.getElementById("estado").value = persona.PER_ESTADO || '';
-                        document.getElementById("venc_pasaporte").value = persona.PER_FECH_VENCE_PASS || '';
-                        document.getElementById("nacionalidad").value = persona.PER_NACIONALIDAD || '';
-                        document.getElementById("venc_cedula").value = persona.PER_FECH_VENCE_CED || '';
+                        document.getElementById("pais_nacimiento").value = persona.PAIS || '';
                         document.getElementById("ciudad_reside").value = persona.PER_CIUDAD_RESIDE || '';
                         document.getElementById("direccion").value = persona.PER_DIRECCION || '';
                         document.getElementById("telefono").value = persona.PER_FONOCONVENCIONAL || '';
                         document.getElementById("nombre_contacto").value = persona.PER_NOMBRE_CONTACTO || '';
                         document.getElementById("email").value = persona.PER_EMAIL || '';
+                        
                         document.getElementById("primaria").value = persona.PER_ESCUELA || '';
                         document.getElementById("secundaria").value = persona.PER_COLEGIO || '';
                         document.getElementById("superior").value = persona.PER_SUPERIOR || '';
                         document.getElementById("otros").value = persona.PER_EDUCACION_OTROS || '';
                         document.getElementById("idiomas").value = persona.PER_IDIOMAS || '';
-
-                        // Cerrar el modal con Bootstrap 5
-                        var myModal = new bootstrap.Modal(document.getElementById('modalCRUD'));
-                        myModal.hide();
                     });
                 });
             } else {
