@@ -48,14 +48,12 @@
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
 <script> src = "js/sb-admin-2.js"</script>
 
 <!-- Core plugin JavaScript-->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
 
 <!-- datatables JS -->
 <script type="text/javascript" src="vendor/datatables/datatables.min.js"></script>
@@ -74,17 +72,9 @@
 <script src="js/demo/chart-bar-demo.js"></script>
 <script src="js/demo/chart-pie-demo.js"></script>
 
-<!-- para usar botones en datatables JS -->
-<script src="datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
-<script src="datatables/JSZip-2.5.0/jszip.min.js"></script>
-<script src="datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
-<script src="datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
-<script src="datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
-
 <!-- para usar alert en sweetalert JS -->
 <script type="text/javascript" src="js/sweet.alert.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 
 <!-- jsPDF for exporting to PDF -->
 <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>

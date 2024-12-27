@@ -123,7 +123,16 @@ $deportes = $resultado->fetchAll(PDO::FETCH_ASSOC);
         margin-top: 20px;
     }
 
-    .btn {
+    .btnbuscar {
+        padding: 8px 20px;
+        margin: auto;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: #fff;
+    }
+
+    .btnfoto {
         padding: 8px 20px;
         margin: 0 5px;
         border: 1px solid #ddd;
@@ -167,7 +176,7 @@ $deportes = $resultado->fetchAll(PDO::FETCH_ASSOC);
             font-size: 1rem;
         }
 
-        .btn {
+        .btnfoto {
             padding: 6px 15px;
             font-size: 14px;
         }
@@ -218,15 +227,16 @@ $deportes = $resultado->fetchAll(PDO::FETCH_ASSOC);
             <h6 class="m-0 font-weight-bold text-primary">Registro de Personas</h6>
         </div>
         <div class="card-body">
+            <button id="openModal" data-toggle="modal" data-target="#modalCRUD" class="btnbuscar">
+                <i class="fas fa-exclamation-circle"></i>
+            </button>
+            <br><br>
             <form id="registroForm" action="bd/crud.php" method="POST" enctype="multipart/form-data">
                 <div class="section">
                     <div class="section-title">Datos Personales</div>
                     <div style="display: flex; flex-wrap: wrap;">
                         <div style="flex: 1; min-width: 250px;">
                             <div class="form-group">
-                                <button id="openModal" data-toggle="modal" data-target="#modalCRUD" class="btn">
-                                    <i class="fas fa-eye"></i>
-                                </button>
                                 <label class="form-label">Nombres</label>
                                 <input type="text" name="nombres" type="text" class="form-control" id="nombres"
                                     required>
@@ -285,7 +295,7 @@ $deportes = $resultado->fetchAll(PDO::FETCH_ASSOC);
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label class="">Representa a</label>
+                                    <label class="form-label">Representa a</label>
                                     <select class="form-control" type="text" name="provincia_representa"
                                         id="provincia_representa" required>
                                         <option value="">Seleccione una Provincia</option>
@@ -351,6 +361,7 @@ $deportes = $resultado->fetchAll(PDO::FETCH_ASSOC);
                                         <option value="A">Activo</option>
                                         <option value="H">Historico</option>
                                         <option value="I">Inactivo</option>
+                                        <option value="E">Eliminado</option>
                                     </select>
                                 </div>
                             </div>
@@ -360,7 +371,7 @@ $deportes = $resultado->fetchAll(PDO::FETCH_ASSOC);
                             <div class="photo-upload">
                                 <img id="preview" style="display: none; max-width: 100%; max-height: 100%;">
                                 <input type="file" id="foto" name="foto" accept="image/*" style="display: none;">
-                                <button type="button" class="btn" onclick="document.getElementById('foto').click()">
+                                <button type="button" class="btnfoto" onclick="document.getElementById('foto').click()">
                                     Seleccionar archivo
                                 </button>
                                 <div>Ningún archivo seleccionado</div>
@@ -385,7 +396,8 @@ $deportes = $resultado->fetchAll(PDO::FETCH_ASSOC);
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label">Nacionalidad</label>
-                            <select class="form-control" type="select" name="nacionalidad" id="nacionalidad">
+                            <input type="text" class="form-control" name="nacionalidad" id="nacionalidad" required>
+                            <!--select class="form-control" type="select" name="nacionalidad" id="nacionalidad">
                                 <option value="">Seleccion una Nacionalidad</option>
                                 <option value="Ecuatoriana">Ecuatoriano/-a</option>
                                 <option value="Argentino">Argentino/-a</option>
@@ -393,7 +405,7 @@ $deportes = $resultado->fetchAll(PDO::FETCH_ASSOC);
                                 <option value="Colombiano">Colombiano/-a</option>
                                 <option value="Chileno">Chileno/-a</option>
                                 <option value="Estadounidense">Estadounidense</option>
-                            </select>
+                            </select-->
                         </div>
                         <div class="form-group">
                             <label class="form-label">Fecha Ex. Cédula</label>
@@ -465,8 +477,8 @@ $deportes = $resultado->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                 </div>
                 <div class="button-group">
-                    <button type="submit" id="btn_guardar" class="btn btn-primary">Guardar</button>
-                    <button type="button" class="btn">Editar</button>
+                    <button type="submit" id="btn_guardar" class="btn btn-success">Guardar</button>
+                    <button type="button" id="btn_editar" class="btn btn-primary">Editar</button>
                     <button type="button" class="btn btn-danger">Eliminar</button>
                 </div>
             </form>
@@ -489,12 +501,12 @@ $deportes = $resultado->fetchAll(PDO::FETCH_ASSOC);
                             <div class="row">
                                 <div class="col-3">
                                     <label for="deporte">Deporte</label>
-                                    <select class="form-control" id="deporte" name="deporte">
-                                        <option value="">Todos</option>
+                                    <select class="form-control" type="text" name="deporte" id="deporte" required>
+                                        <option value="">Seleccione un Deporte</option>
                                         <?php
-                                        foreach ($deportes as $deporte) {
-                                            echo "<option value='" . $deporte['DEP_ID'] . "'>" . $deporte['DEP_DESCRIPCION'] . "</option>";
-                                        }
+                                        foreach ($deportes as $deporte):
+                                            echo '<option value="' . $deporte["DEP_ID"] . '">' . $deporte["DEP_DESCRIPCION"] . '</option>';
+                                        endforeach;
                                         ?>
                                     </select>
                                 </div>
@@ -546,14 +558,6 @@ $deportes = $resultado->fetchAll(PDO::FETCH_ASSOC);
         var deporte = document.getElementById("deporte").value.trim();
         var nombre = document.getElementById("nombre").value.trim();
         var apellidos = document.getElementById("apellidos").value.trim();
-        var pasaporte = document.getElementById("pasaporte").value.trim();
-        var fecha_nacimiento = document.getElementById("fecha_nacimiento").value.trim();
-        var pais_nacimiento = document.getElementById("pais_nacimiento").value.trim(); // Obtener el valor del select correctamente
-        var ciudad_reside = document.getElementById("ciudad_reside").value.trim(); // Obtener el valor del select correctamente
-        var direccion = document.getElementById("direccion").value.trim(); 
-        var telefono = document.getElementById("telefono").value.trim();
-        var nombre_contacto = document.getElementById("nombre_contacto").value.trim();
-        var email = document.getElementById("email").value.trim();
 
         var tbody = document.getElementById("resultados");
         tbody.innerHTML = ""; // Limpiar resultados anteriores
@@ -597,25 +601,54 @@ $deportes = $resultado->fetchAll(PDO::FETCH_ASSOC);
                         Array.from(tbody.querySelectorAll("tr")).forEach(r => r.classList.remove("selected-row"));
                         row.classList.add("selected-row");
 
-                        // Mostrar los valores en el formulario
-                        document.getElementById("nombres").value = persona.PER_NOMBRES;
-                        document.getElementById("apellidos").value = persona.PER_APELLIDOS;
-                        document.getElementById("cedula").value = persona.PER_CEDULA;
-                        document.getElementById("pasaporte").value = persona.PER_PASAPORTE;
-                        document.getElementById("deporte").value = persona.DEPORTE;
-                        document.getElementById("fecha_nacimiento").value = persona.PER_FECHANACIMIENTO;
-                        document.getElementById("pais_nacimiento").value = persona.PAIS || '';
+                        // Rellenar el formulario con los datos seleccionados
+                        document.getElementById("deporte").value = persona.DEPORTE || '';
+
+
+                        document.getElementById("nombres").value = persona.PER_NOMBRES || '';
+                        document.getElementById("apellidos").value = persona.PER_APELLIDOS || '';
+                        document.getElementById("cedula").value = persona.PER_CEDULA || '';
+                        document.getElementById("fecha_nacimiento").value = persona.PER_FECHANACIMIENTO || '';
+                        document.getElementById("pais_nacimiento").value = persona.PER_PAIS || '';
+                        document.getElementById("provincia_nacimiento").value = persona.PER_PROVINCIA || '';
+                        document.getElementById("ciudad_nacimiento").value = persona.PER_CIUDAD_NACIMIENTO || '';
+                        document.getElementById("provincia_representa").value = persona.PER_PROVREPRESENTA || '';
+                        document.getElementById("tipo_sangre").value = persona.PER_TIPO_SANGRE || '';
+                        document.getElementById("tipo_persona").value = persona.PER_IDTIPO || '';
+                        document.getElementById("genero").value = persona.PER_SEXO || '';
+                        document.getElementById("estado").value = persona.PER_ESTADO || '';
+                        document.getElementById("deporte").value = persona.PER_DEPORTE || '';
+
+                        document.getElementById("pasaporte").value = persona.PER_PASAPORTE || '';
+                        document.getElementById("venc_pasaporte").value = persona.PER_FECH_VENCE_PASS || '';
+                        document.getElementById("nacionalidad").value = persona.PER_NACIONALIDAD || '';
+                        document.getElementById("venc_cedula").value = persona.PER_FECH_VENCE_CED || '';
+
                         document.getElementById("ciudad_reside").value = persona.PER_CIUDAD_RESIDE || '';
                         document.getElementById("direccion").value = persona.PER_DIRECCION || '';
                         document.getElementById("telefono").value = persona.PER_FONOCONVENCIONAL || '';
+                        document.getElementById("celular").value = persona.PER_CELULAR || '';
                         document.getElementById("nombre_contacto").value = persona.PER_NOMBRE_CONTACTO || '';
                         document.getElementById("email").value = persona.PER_EMAIL || '';
-                        
+
                         document.getElementById("primaria").value = persona.PER_ESCUELA || '';
                         document.getElementById("secundaria").value = persona.PER_COLEGIO || '';
                         document.getElementById("superior").value = persona.PER_SUPERIOR || '';
-                        document.getElementById("otros").value = persona.PER_EDUCACION_OTROS || '';
+                        document.getElementById("otros_estudios").value = persona.PER_EDUCACION_OTROS || '';
                         document.getElementById("idiomas").value = persona.PER_IDIOMAS || '';
+
+                        // Cerrar el modal
+                        if (typeof bootstrap !== "undefined" && bootstrap.Modal) {
+                            // Bootstrap 5
+                            var modal = document.getElementById("miModal");
+                            var modalInstance = bootstrap.Modal.getInstance(modal);
+                            if (modalInstance) modalInstance.hide();
+                        } else if (typeof $ !== "undefined" && $.fn.modal) {
+                            // Bootstrap 4 (usando jQuery)
+                            $('#miModal').modal('hide');
+                        } else {
+                            console.error("No se detectó Bootstrap. Asegúrate de que está correctamente cargado.");
+                        }
                     });
                 });
             } else {
@@ -623,6 +656,7 @@ $deportes = $resultado->fetchAll(PDO::FETCH_ASSOC);
             }
         };
     });
+
 </script>
 
 <?php require_once "vistas/parte_inferior.php" ?>

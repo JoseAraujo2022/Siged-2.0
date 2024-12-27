@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     Swal.fire({
                         icon: "success",
                         title: "Exito",
-                        text: data.mensaje,
+                        text: data.message,
                         showConfirmButton: false,
                         timer: 1500
                     });
